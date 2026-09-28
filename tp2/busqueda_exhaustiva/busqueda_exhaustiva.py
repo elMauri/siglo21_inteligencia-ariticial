@@ -12,7 +12,34 @@ Escenario simplificado:
 """
 
 import argparse
+import sys
 from collections import deque
+
+
+def pedir_valor(mensaje, tipo, valor_defecto):
+    """Solicita un valor por teclado; Enter conserva el valor por defecto."""
+    while True:
+        entrada = input(f"{mensaje} [{valor_defecto}]: ").strip()
+        if not entrada:
+            return valor_defecto
+        try:
+            return tipo(entrada)
+        except ValueError:
+            print("Valor invalido. Intente nuevamente.")
+
+
+def menu_ejecucion():
+    """Muestra el menu inicial y devuelve '1' (default) o '2' (manual)."""
+    print("=" * 60)
+    print("MENU DE EJECUCION")
+    print("=" * 60)
+    print("1) Ejecutar con valores por defecto")
+    print("2) Ingresar valores manualmente")
+    while True:
+        opcion = input("Seleccione una opcion (1/2): ").strip()
+        if opcion in ("1", "2"):
+            return opcion
+        print("Opcion invalida. Intente nuevamente.")
 
 
 def palpar(posicion, objetivo):
@@ -118,6 +145,19 @@ def main():
     posicion_a = args.objetivo
     delta_h = args.delta
     limite = args.limite
+
+    # Sin argumentos de linea de comandos, se muestra el menu interactivo.
+    if len(sys.argv) == 1:
+        if menu_ejecucion() == "2":
+            posicion_b = pedir_valor(
+                "Posicion inicial del robot B", int, posicion_b)
+            posicion_a = pedir_valor(
+                "Posicion objetivo real A", int, posicion_a)
+            delta_h = pedir_valor(
+                "Incremento de cada palpacion", int, delta_h)
+            limite = pedir_valor(
+                "Rango maximo de exploracion", int, limite)
+        print()
 
     print("=" * 60)
     print("BUSQUEDA EXHAUSTIVA: POSICIONAMIENTO DE MONTAJE")

@@ -45,13 +45,38 @@ El programa ejecuta ambas estrategias con los mismos parámetros e imprime el ca
 
 ## Ejecución
 
-Desde esta carpeta, ejecutar con los valores predeterminados:
+Desde esta carpeta, ejecutar:
 
 ```bash
 python3 busqueda_exhaustiva.py
 ```
 
-También se pueden indicar posiciones y opciones, por ejemplo:
+### Menú de ejecución
+
+Al ejecutarlo sin argumentos se muestra un menú interactivo con dos opciones:
+
+```text
+============================================================
+MENU DE EJECUCION
+============================================================
+1) Ejecutar con valores por defecto
+2) Ingresar valores manualmente
+Seleccione una opcion (1/2):
+```
+
+- **Opción 1 (valores por defecto):** ejecuta la búsqueda directamente con `inicial = 50`, `objetivo = 67`, `delta = 1` y `limite = 100`.
+- **Opción 2 (valores manuales):** solicita cada parámetro por teclado, mostrando su valor por defecto entre corchetes. Presionar Enter sin escribir nada conserva ese valor. Si se ingresa un dato inválido, el programa lo indica y vuelve a preguntar.
+
+Ejemplo de ingreso manual:
+
+```text
+Posicion inicial del robot B [50]: 40
+Posicion objetivo real A [67]: 60
+Incremento de cada palpacion [1]: 2
+Rango maximo de exploracion [100]: 50
+```
+
+Si se ingresa una opción distinta de `1` o `2`, el menú vuelve a pedir la selección. También se pueden indicar posiciones y opciones directamente como argumentos, en cuyo caso el menú no se muestra:
 
 ```bash
 python3 busqueda_exhaustiva.py 50 67 --delta 1 --limite 100
