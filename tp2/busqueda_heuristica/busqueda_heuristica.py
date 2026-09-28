@@ -14,6 +14,11 @@ Precondiciones:
   medido y el relieve esperado en A. La búsqueda elige, en cada paso, el
   movimiento que reduce ese valor. Si ninguno mejora, retrocede y prueba el
   sentido contrario.
+
+Método: búsqueda local por descenso de colinas (hill climbing) con retroceso.
+No es A* ni búsqueda voraz primero el mejor: no mantiene una frontera de
+estados pendientes ni calcula f(n) = g(n) + h(n); la decisión es local,
+comparando únicamente h de los vecinos inmediatos.
 """
 
 import argparse
@@ -78,6 +83,10 @@ def busqueda_heuristica(inicial, objetivo, paso=1, limite=100, max_iter=1000,
     vecinos inmediatos (izquierda y derecha). Se avanza hacia el vecino cuya
     heurística sea menor. Si ninguno mejora, se retrocede un paso y se explora
     la otra dirección.
+
+    Nota: no es A*. No existe una frontera global de estados pendientes ni una
+    función de evaluación f(n) = g(n) + h(n); la elección se hace solo con el
+    valor h de los vecinos de la posición actual.
 
     Retorna:
         (camino, palpaciones) o (None, palpaciones) si no se halla A.
@@ -208,12 +217,12 @@ def main():
     print("ANÁLISIS DEL MÉTODO")
     print("=" * 60)
     print(
-        "El método heurístico implementado es una búsqueda por descenso de\n"
-        "guiada por el relieve del block. En cada paso\n"
-        "el robot palpa los puntos B + delta y B - delta y elige el que reduce la\n"
-        "diferencia entre el relieve medido y el relieve esperado en A.\n"
-        "Como el perfil del anillo tiene un mínimo en A, reducir esa diferencia\n"
-        "equivale a acercarse al punto de montaje."
+        "El método heurístico implementado es una búsqueda local por descenso\n"
+        "de colinas (hill climbing) con retroceso, guiada por el relieve del\n"
+        "block. En cada paso el robot palpa los puntos B + delta y B - delta\n"
+        "y elige el que reduce la diferencia entre el relieve medido y el\n"
+        "relieve esperado en A. Como el perfil del anillo tiene un mínimo en A,\n"
+        "reducir esa diferencia equivale a acercarse al punto de montaje."
     )
     print()
     print("Características:")
@@ -221,6 +230,8 @@ def main():
     print("- No requiere explorar ambos sentidos simultáneamente.")
     print("- Realiza retrocesos si un camino deja de mejorar la heurística.")
     print("- El número de palpaciones crece de forma mucho menor que en BFS.")
+    print("- Es un método local: no es A*; no usa una frontera de estados")
+    print("  pendientes ni la función de evaluación f(n) = g(n) + h(n).")
     print()
     print("Ventajas:")
     print("- Mayor eficiencia: evita recorrer todo el espacio de estados.")
@@ -233,11 +244,15 @@ def main():
     print()
     print("Justificación del método elegido:")
     print(
-        "Para este problema, el ascenso/descenso de colinas es el más apropiado\n"
+        "Para este problema, el descenso de colinas es el más apropiado\n"
         "porque el robot dispone de información directa (relieve) que indica\n"
         "hacia qué lado se encuentra A en la recta H. A diferencia de BFS, no\n"
         "necesita mantener una frontera amplia ni explorar en ambos sentidos a\n"
-        "la vez, por lo que reduce el tiempo de parada de la línea."
+        "la vez, por lo que reduce el tiempo de parada de la línea.\n"
+        "Se descartó A* porque no hay costos diferenciados entre movimientos\n"
+        "ni una heurística admisible sobre la distancia restante; el relieve\n"
+        "solo permite una decisión local, que es lo que resuelve el descenso\n"
+        "de colinas."
     )
 
 

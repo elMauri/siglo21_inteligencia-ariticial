@@ -2,6 +2,16 @@
 
 Este programa simula un robot que parte de una posición teórica `B` y busca el punto real de montaje `A`. A diferencia de la búsqueda exhaustiva, el robot cuenta con una medición de relieve que estima qué tan cerca está del centro del anillo situado en `A`. La búsqueda usa esa medición para decidir hacia dónde moverse.
 
+## Tipo de búsqueda implementada
+
+El método es una **búsqueda local por descenso de colinas (hill climbing) con retroceso**, **no A\*** ni búsqueda voraz primero el mejor (*greedy best-first*). Las diferencias concretas:
+
+- No mantiene una frontera de estados pendientes: solo conserva la posición actual y el camino recorrido. A* y greedy expanden estados desde una frontera ordenada por prioridad.
+- No calcula `f(n) = g(n) + h(n)` como A*; compara únicamente `h` de los vecinos inmediatos de la posición actual y avanza al de menor valor. En greedy best-first la prioridad es `h`, pero igualmente requiere la frontera global.
+- Cuando ningún vecino mejora la heurística actual, retrocede un paso por el camino para probar la otra dirección; es una decisión local, no una reevaluación de alternativas previas como en A*.
+
+El descenso de colinas resulta adecuado aquí porque la medición de relieve ya indica la dirección prometedora sobre la recta `H` y los movimientos tienen costo uniforme. Su principal riesgo es quedar atrapado si el relieve real presentara mínimos locales.
+
 ## Cómo funciona, paso a paso
 
 ### 1. Modela y mide el relieve
