@@ -17,6 +17,33 @@ Precondiciones:
 """
 
 import argparse
+import sys
+
+
+def pedir_valor(mensaje, tipo, valor_defecto):
+    """Solicita un valor por teclado; Enter conserva el valor por defecto."""
+    while True:
+        entrada = input(f"{mensaje} [{valor_defecto}]: ").strip()
+        if not entrada:
+            return valor_defecto
+        try:
+            return tipo(entrada)
+        except ValueError:
+            print("Valor no válido. Intente nuevamente.")
+
+
+def menu_ejecucion():
+    """Muestra el menú inicial y devuelve '1' (default) o '2' (manual)."""
+    print("=" * 60)
+    print("MENÚ DE EJECUCIÓN")
+    print("=" * 60)
+    print("1) Ejecutar con valores por defecto")
+    print("2) Ingresar valores manualmente")
+    while True:
+        opcion = input("Seleccione una opción (1/2): ").strip()
+        if opcion in ("1", "2"):
+            return opcion
+        print("Opción inválida. Intente nuevamente.")
 
 
 def perfil_anillo(distancia, escala=10.0):
@@ -138,6 +165,21 @@ def main():
     delta_h = args.delta
     limite = args.limite
     escala = args.escala
+
+    # Sin argumentos de línea de comandos, se muestra el menú interactivo.
+    if len(sys.argv) == 1:
+        if menu_ejecucion() == "2":
+            posicion_b = pedir_valor(
+                "Posición inicial del robot B", int, posicion_b)
+            posicion_a = pedir_valor(
+                "Posición objetivo real A", int, posicion_a)
+            delta_h = pedir_valor(
+                "Incremento de cada palpación", int, delta_h)
+            limite = pedir_valor(
+                "Rango máximo de exploración", int, limite)
+            escala = pedir_valor(
+                "Escala del perfil de relieve", float, escala)
+        print()
 
     print("=" * 60)
     print("BÚSQUEDA HEURÍSTICA: POSICIONAMIENTO DE MONTAJE")

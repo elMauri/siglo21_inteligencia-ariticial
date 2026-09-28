@@ -46,13 +46,39 @@ El programa imprime los parámetros utilizados y, si encuentra `A`, muestra el c
 
 ## Ejecución
 
-Desde esta carpeta, ejecutar con los valores predeterminados:
+Desde esta carpeta, ejecutar:
 
 ```bash
 python3 busqueda_heuristica.py
 ```
 
-También se pueden indicar posiciones y opciones, por ejemplo:
+### Menú de ejecución
+
+Al ejecutarlo sin argumentos se muestra un menú interactivo con dos opciones:
+
+```text
+============================================================
+MENÚ DE EJECUCIÓN
+============================================================
+1) Ejecutar con valores por defecto
+2) Ingresar valores manualmente
+Seleccione una opción (1/2):
+```
+
+- **Opción 1 (valores por defecto):** ejecuta la búsqueda directamente con `inicial = 50`, `objetivo = 67`, `delta = 1`, `limite = 100` y `escala = 10.0`.
+- **Opción 2 (valores manuales):** solicita cada parámetro por teclado, mostrando su valor por defecto entre corchetes. Presionar Enter sin escribir nada conserva ese valor. Si se ingresa un dato inválido, el programa lo indica y vuelve a preguntar.
+
+Ejemplo de ingreso manual:
+
+```text
+Posición inicial del robot B [50]: 30
+Posición objetivo real A [67]: 45
+Incremento de cada palpación [1]: 3
+Rango máximo de exploración [100]: 60
+Escala del perfil de relieve [10.0]: 8
+```
+
+Si se ingresa una opción distinta de `1` o `2`, el menú vuelve a pedir la selección. También se pueden indicar posiciones y opciones directamente como argumentos, en cuyo caso el menú no se muestra:
 
 ```bash
 python3 busqueda_heuristica.py 50 67 --delta 1 --limite 100 --escala 10
