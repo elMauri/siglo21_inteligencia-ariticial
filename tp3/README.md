@@ -1,6 +1,6 @@
 # Prototipo de red de Hopfield
 
-El archivo `prototipo_hopfield.py` implementa una demostración de una **red neuronal de Hopfield** para recuperar un patrón a partir de una imagen con ruido. Compara dos métodos de entrenamiento: la regla de **Hebb** y la **pseudoinversa**.
+El archivo `prototipo_hopfield.py` implementa una demostración de una **red neuronal de Hopfield** para recuperar un patrón a partir de una imagen con ruido.
 
 ## Qué hace el programa
 
@@ -22,7 +22,7 @@ Los patrones y el ruido se generan dentro del código: **no se necesitan imágen
 
 Abrí una terminal en la carpeta donde está `prototipo_hopfield.py`. Se recomienda crear un entorno virtual para instalar la dependencia.
 
-### Linux o macOS
+### Linux
 
 ```bash
 python3 -m venv .venv
@@ -31,7 +31,7 @@ python -m pip install numpy
 python prototipo_hopfield.py
 ```
 
-### Windows (PowerShell)
+### Windows
 
 ```powershell
 py -m venv .venv
