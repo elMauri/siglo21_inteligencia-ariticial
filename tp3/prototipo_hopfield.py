@@ -57,13 +57,12 @@ def ejecutar():
     for pos, p in zip(POSICIONES, patrones):
         print(f'\nAro con centro {pos}:\n{dibujar(p)}')
     print('\nIMAGEN CON RUIDO (centro esperado: (6,3)):\n' + dibujar(alterada))
-    for metodo in ('hebb', 'pseudoinversa'):
-        W = entrenar(patrones, metodo)
-        salida, barridos = recuperar(alterada, W)
-        centro, diferencias = centro_estimado(salida, patrones)
-        print(f'\nMETODO {metodo.upper()} - barridos: {barridos}, centro reconocido: {centro}')
-        print(f'Diferencias respecto a patrones: {diferencias}')
-        print(dibujar(salida))
+    metodo = 'pseudoinversa'
+    W = entrenar(patrones, metodo)
+    salida, barridos = recuperar(alterada, W)
+    centro, diferencias = centro_estimado(salida, patrones)
+    print(f'\nMETODO {metodo.upper()} - barridos: {barridos}, centro reconocido: {centro}')
+    print(dibujar(salida))
 
 if __name__ == '__main__':
     ejecutar()
