@@ -76,8 +76,3 @@ Las imágenes se dibujan con `X` para los píxeles del aro y espacios para el fo
 La cantidad de barridos incluye el barrido final sin cambios cuando se detecta estabilidad. Si se llega al máximo de barridos, la función devuelve el último estado sin indicar por separado si logró estabilizarse. Una salida estable puede no coincidir con un patrón memorizado; por eso el centro reconocido puede ser `None`.
 
 El script no guarda archivos ni abre ventanas gráficas.
-
-## Problemas frecuentes
-
-- **`ModuleNotFoundError: No module named 'numpy'`**: instalá NumPy en el mismo entorno de Python con el que ejecutás el script, usando `python -m pip install numpy`.
-- **No se encuentra el archivo**: verificá que la terminal esté ubicada en la carpeta del script o ejecutalo indicando su ruta completa.
