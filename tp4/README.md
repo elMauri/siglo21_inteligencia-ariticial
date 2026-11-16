@@ -1,4 +1,4 @@
-# TP 4: detección de rectas y circunferencias con Hough
+# Trabajo Practico N°4: detección de rectas y circunferencias con Transformada de Hough
 
 El archivo `transformada_hough.py` reúne los dos prototipos. Recibe primero el tipo de transformada y luego la imagen. Analiza la imagen, informa las figuras encontradas y guarda una copia. 
 Se uso una imagen en 2D descargada desde Internet de ejemplo que se 
