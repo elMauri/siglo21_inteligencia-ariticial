@@ -71,4 +71,3 @@ Tras convertir y suavizar la imagen, se aplica `HoughCircles` con el método de 
 
 - **Módulo 4, Lectura 3**, «Percepción y navegación robótica», especialmente pp. 8–10: etapas de visión artificial y transformada de Hough en coordenadas polares.
 - **TP4, Situación problemática**, pp. 3–5: desplazamiento del motor, aro C, centro A y caso de radio conocido.
-- Escalera, A. (2001). *Visión por computador: fundamentos y métodos*. Prentice Hall. Obra citada en las referencias de la Lectura 3; se incluye como bibliografía complementaria, sin atribuirle afirmaciones no verificadas directamente en ella.
